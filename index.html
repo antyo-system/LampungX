@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lampung Explorer - Wisata Lampung</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        :root {
+            --primary: #2E7D32;
+            --secondary: #FF9800;
+            --accent: #1565C0;
+            --light: #f8f9fa;
+            --dark: #212121;
+            --gray: #666;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* UTILITY */
+        .hidden { display: none !important; }
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background: #1B5E20;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: var(--secondary);
+        }
+        .btn-secondary:hover {
+            background: #F57C00;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+        
+        /* NAVBAR - RESPONSIVE */
+        .navbar {
+            background: var(--primary);
+            color: white;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo i {
+            font-size: 28px;
+        }
+        .desktop-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        .desktop-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        .desktop-nav a:hover {
+            opacity: 0.9;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(rgba(46,125,50,0.9), rgba(46,125,50,0.8)), 
+                        url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2070') center/cover;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 40px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .search-box {
+            background: white;
+            border-radius: 50px;
+            padding: 10px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .search-box input {
+            border: none;
+            outline: none;
+            flex: 1;
+            padding: 12px;
+            font-size: 18px;
+            color: var(--dark);
+        }
+        .search-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        
+        /* FEATURES GRID */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin: 50px 0;
+        }
+        .feature-item {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        .feature-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+        .feature-item h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        
+        /* DESTINATION GRID */
+        .section-title {
+            font-size: 36px;
+            color: var(--primary);
+            margin: 50px 0 30px;
+            text-align: center;
+        }
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .dest-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .dest-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+        .dest-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(45deg, #2E7D32, #4CAF50);
+        }
+        .dest-info {
+            padding: 20px;
+        }
+        .dest-info h3 {
+            font-size: 22px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .rating {
+            color: var(--secondary);
+            font-size: 18px;
+            margin: 8px 0;
+        }
+        .dest-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        
+        /* DETAIL PAGE STYLES */
+        .detail-hero {
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') center/cover;
+            border-radius: 20px;
+            margin: 30px 0;
+            position: relative;
+        }
+        .detail-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .gallery-img {
+            width: 100%;
+            height: 120px;
+            border-radius: 10px;
+            object-fit: cover;
+            background: #ddd;
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+        }
+        
+        /* RESPONSIVE BREAKPOINTS */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            .hero p {
+                font-size: 18px;
+            }
+            .desktop-nav {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .destinations-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            .detail-content {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 50px 15px;
+            }
+            .search-box {
+                padding: 8px 15px;
+            }
+            .search-box input {
+                font-size: 16px;
+                padding: 10px;
+            }
+            .destinations-grid {
+                grid-template-columns: 1fr;
+            }
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* MOBILE NAV */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1001;
+            padding: 80px 30px 30px;
+            transition: right 0.3s;
+        }
+        .mobile-nav.active {
+            right: 0;
+        }
+        .mobile-nav a {
+            display: block;
+            padding: 15px;
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 18px;
+            border-bottom: 1px solid #eee;
+        }
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+        }
+        .overlay.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-mountain"></i>
+                <span>LampungExplorer</span>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="desktop-nav">
+                <a href="#home">Beranda</a>
+                <a href="#destinasi">Destinasi</a>
+                <a href="#itinerary">Rencana Perjalanan</a>
+                <a href="#guide">Panduan Lokal</a>
+                <a href="#about">Tentang</a>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-user"></i> Masuk
+                </button>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="overlay" id="overlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <button class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#home">Beranda</a>
+        <a href="#destinasi">Destinasi</a>
+        <a href="#itinerary">Rencana Perjalanan</a>
+        <a href="#guide">Panduan Lokal</a>
+        <a href="#about">Tentang</a>
+        <a href="#login" style="color: var(--primary); font-weight: bold;">
+            <i class="fas fa-user"></i> Masuk
+        </a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Jelajahi Keindahan Lampung</h1>
+            <p>Temukan wisata tersembunyi & buat perjalanan tak terlupakan</p>
+            <div class="search-box">
+                <i class="fas fa-search" style="color: var(--gray);"></i>
+                <input type="text" placeholder="Cari destinasi, kuliner, aktivitas...">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <div class="container">
+        <div class="features">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-route"></i>
+                </div>
+                <h3>Rencana Perjalanan</h3>
+                <p>Buat itinerary custom sesuai keinginanmu</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <h3>Peta Offline</h3>
+                <p>Akses peta tanpa internet connection</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-user-friends"></i>
+                </div>
+                <h3>Panduan Lokal</h3>
+                <p>Tour guide verified oleh komunitas</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h3>Kalkulator Biaya</h3>
+                <p>Estimasi budget perjalanan akurat</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DESTINATIONS -->
+    <div class="container" id="destinasi">
+        <h2 class="section-title">🏝️ Destinasi Populer</h2>
+        
+        <div class="destinations-grid">
+            <!-- Destination 1 -->
+            <div class="dest-card" onclick="showDetail('pantai-mutun')">
+                <div class="dest-img"></div>
+                <div class="dest-info">
+                    <h3>Pantai Mutun</h3>
+                    <p class="rating">★★★★☆ 4.5</p>
+                    <p>Pantai dengan pasir putih dan pohon pinus yang rindang, cocok untuk keluarga.</p>
+                    <div class="dest-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Bandar Lampung</span>
+                        <span><i class="fas fa-tag"></i> Gratis</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Destination 2 -->
+            <div class="dest-card">
+                <div class="dest-img"></div>
+                <div class="dest-info">
+                    <h3>Gunung Pesagi</h3>
+                    <p class="rating">★★★★☆ 4.7</p>
+                    <p>Gunung tertinggi di Lampung dengan pemandangan spektakuler dari puncak.</p>
+                    <div class="dest-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Lampung Barat</span>
+                        <span><i class="fas fa-tag"></i> Rp 15.000</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Destination 3 -->
+            <div class="dest-card">
+                <div class="dest-img"></div>
+                <div class="dest-info">
+                    <h3>Way Kambas</h3>
+                    <p class="rating">★★★★★ 4.9</p>
+                    <p>Taman nasional dengan gajah sumatera, safari dan edukasi konservasi.</p>
+                    <div class="dest-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Lampung Timur</span>
+                        <span><i class="fas fa-tag"></i> Rp 25.000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <button class="btn" style="padding: 15px 40px; font-size: 18px;">
+                <i class="fas fa-plus"></i> Lihat Semua Destinasi
+            </button>
+        </div>
+    </div>
+
+    <!-- ITINERARY SECTION -->
+    <div class="container" id="itinerary">
+        <h2 class="section-title">🗺️ Rencana Perjalanan Populer</h2>
+        
+        <div class="card" style="margin: 30px 0;">
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 30px; align-items: center;">
+                <div>
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Trip 3 Hari Lampung</h3>
+                    <p style="color: var(--gray); margin-bottom: 20px;">Rute terbaik untuk first-timer</p>
+                    <div style="background: var(--light); padding: 15px; border-radius: 10px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span>Estimasi Biaya:</span>
+                            <span style="font-weight: bold; color: var(--primary);">Rp 385.000/orang</span>
+                        </div>
+                        <button class="btn" style="width: 100%;">
+                            <i class="fas fa-eye"></i> Lihat Detail
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <div class="timeline-item" style="display: flex; margin-bottom: 15px;">
+                        <div style="background: var(--primary); color: white; padding: 8px 15px; border-radius: 8px; min-width: 120px; text-align: center;">
+                            08.00 - 09.00
+                        </div>
+                        <div style="background: white; padding: 12px; border-radius: 0 8px 8px 8px; flex: 1; margin-left: 15px; border: 1px solid #eee;">
+                            <strong>Sarapan Lembur Sari</strong>
+                            <div style="color: var(--gray);">Kuliner khas Lampung</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" style="display: flex; margin-bottom: 15px;">
+                        <div style="background: var(--primary); color: white; padding: 8px 15px; border-radius: 8px; min-width: 120px; text-align: center;">
+                            09.30 - 12.00
+                        </div>
+                        <div style="background: white; padding: 12px; border-radius: 0 8px 8px 8px; flex: 1; margin-left: 15px; border: 1px solid #eee;">
+                            <strong>Pantai Mutun</strong>
+                            <div style="color: var(--gray);">Wisata pantai & foto</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LampungExplorer</h3>
+                    <p>Platform wisata terpercaya untuk menjelajahi keindahan Lampung. Temukan pengalaman tak terlupakan.</p>
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <i class="fab fa-instagram" style="font-size: 24px; cursor: pointer;"></i>
+                        <i class="fab fa-facebook" style="font-size: 24px; cursor: pointer;"></i>
+                        <i class="fab fa-tiktok" style="font-size: 24px; cursor: pointer;"></i>
+                        <i class="fab fa-youtube" style="font-size: 24px; cursor: pointer;"></i>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Link Cepat</h3>
+                    <a href="#" style="display: block; color: white; margin-bottom: 10px; text-decoration: none;">Beranda</a>
+                    <a href="#" style="display: block; color: white; margin-bottom: 10px; text-decoration: none;">Destinasi</a>
+                    <a href="#" style="display: block; color: white; margin-bottom: 10px; text-decoration: none;">Rencana Perjalanan</a>
+                    <a href="#" style="display: block; color: white; margin-bottom: 10px; text-decoration: none;">Panduan Lokal</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Kontak</h3>
+                    <p style="margin-bottom: 10px;"><i class="fas fa-map-marker-alt"></i> Bandar Lampung, Indonesia</p>
+                    <p style="margin-bottom: 10px;"><i class="fas fa-envelope"></i> info@lampungexplorer.id</p>
+                    <p style="margin-bottom: 10px;"><i class="fas fa-phone"></i> (0721) 123-456</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 LampungExplorer. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const overlay = document.getElementById('overlay');
+        const closeMenu = document.getElementById('closeMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            overlay.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    mobileNav.classList.remove('active');
+                    overlay.classList.remove('active');
+                }
+            });
+        });
+
+        // Show detail page (simplified)
+        function showDetail(destinationId) {
+            alert('Detail untuk ' + destinationId + ' akan ditampilkan di halaman berikutnya.');
+            // In real implementation, you would navigate to detail page
+            // or show modal with destination details
+        }
+
+        // Responsive adjustments
+        window.addEventListener('resize', function() {
+            if(window.innerWidth > 768) {
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
