@@ -1,14 +1,6 @@
-import { motion } from "framer-motion";
-
 export default function Footer() {
   return (
-    <motion.footer
-      className="footer"
-      data-aos="fade-up"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-    >
+    <footer className="footer" data-aos="fade-up">
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
@@ -16,13 +8,11 @@ export default function Footer() {
             <p>Platform wisata terpercaya untuk menjelajahi keindahan Lampung.</p>
             <div style={{ display: "flex", gap: "15px", marginTop: "20px" }}>
               {["instagram", "facebook", "tiktok", "youtube"].map((icon, i) => (
-                <motion.i
+                <i
                   key={i}
                   className={`fab fa-${icon}`}
                   style={{ fontSize: "24px", cursor: "pointer" }}
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 250 }}
-                ></motion.i>
+                ></i>
               ))}
             </div>
           </div>
@@ -46,6 +36,6 @@ export default function Footer() {
           <p>&copy; 2024 LampungExplorer. Semua hak dilindungi.</p>
         </div>
       </div>
-    </motion.footer>
+    </footer>
   );
 }
