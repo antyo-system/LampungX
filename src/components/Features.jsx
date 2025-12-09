@@ -1,9 +1,25 @@
 export default function Features() {
   const list = [
-    { icon: "fa-route", title: "Rencana Perjalanan", desc: "Buat itinerary custom sesuai keinginanmu" },
-    { icon: "fa-map-marked-alt", title: "Peta Offline", desc: "Akses peta tanpa internet connection" },
-    { icon: "fa-user-friends", title: "Panduan Lokal", desc: "Tour guide verified oleh komunitas" },
-    { icon: "fa-calculator", title: "Kalkulator Biaya", desc: "Estimasi budget perjalanan akurat" },
+    {
+      icon: "fa-route",
+      title: "Rencana Perjalanan ke Neraka",
+      desc: "Buat itinerary custom sesuai keinginanmu",
+    },
+    {
+      icon: "fa-map-marked-alt",
+      title: "Peta Offline",
+      desc: "Akses peta tanpa internet connection",
+    },
+    {
+      icon: "fa-user-friends",
+      title: "Panduan Lokal",
+      desc: "Tour guide verified oleh komunitas",
+    },
+    {
+      icon: "fa-calculator",
+      title: "Kalkulator Biaya",
+      desc: "Estimasi budget perjalanan akurat",
+    },
   ];
 
   return (

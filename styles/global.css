@@ -1,76 +1,53 @@
-.hero {
-  position: relative;
-  background: linear-gradient(rgba(0, 100, 50, 0.6), rgba(0, 100, 50, 0.6)),
-              url("/images/your-lampung-background.jpg") center/cover no-repeat;
-  color: white;
-  text-align: center;
-  padding: 100px 20px 80px;
-  border-radius: 0 0 30px 30px;
+.dest-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.hero-content {
-  position: relative;
-  z-index: 1;
+.dest-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
-.hero h1 {
-  font-size: 2.8rem;
-  margin-bottom: 0.8rem;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
-}
-
-.search-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 500px;
+.dest-img {
   width: 100%;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50px;
-  padding: 10px 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  height: 180px;
+  overflow: hidden;
 }
 
-.search-box input {
-  border: none;
-  outline: none;
-  background: transparent;
-  flex: 1;
-  font-size: 1rem;
-  padding: 10px;
-  color: #333;
+.dest-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-.search-box .search-btn {
-  background: #FFA500; /* warna tombol bisa kamu sesuaikan */
-  border: none;
-  border-radius: 50%;
-  padding: 10px 14px;
-  cursor: pointer;
-  color: white;
+.dest-card:hover .dest-img img {
+  transform: scale(1.05);
+}
+
+.dest-info {
+  padding: 20px;
+  text-align: left;
+}
+
+.dest-info h3 {
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.dest-info .rating {
+  color: #ff9800;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.dest-meta {
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@media (max-width: 768px) {
-  .hero {
-    padding: 80px 15px 60px;
-  }
-  .hero h1 {
-    font-size: 2rem;
-  }
-  .hero p {
-    font-size: 1rem;
-  }
-  .search-box {
-    max-width: 90%;
-    padding: 8px 15px;
-  }
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--gray);
+  margin-top: 10px;
 }
