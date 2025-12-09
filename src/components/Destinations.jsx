@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-
 export default function Destinations() {
   const list = [
     { name: "Pantai Mutun", rating: "★★★★☆ 4.5", desc: "Pantai pasir putih yang menenangkan.", location: "Bandar Lampung", price: "Gratis" },
@@ -12,11 +10,9 @@ export default function Destinations() {
       <h2 className="section-title" data-aos="fade-down">🏝️ Destinasi Populer</h2>
       <div className="destinations-grid">
         {list.map((d, i) => (
-          <motion.div
+          <div
             className="dest-card"
             key={i}
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 200 }}
             data-aos="fade-up"
             data-aos-delay={i * 200}
           >
@@ -30,18 +26,15 @@ export default function Destinations() {
                 <span><i className="fas fa-tag"></i> {d.price}</span>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
 
-      <motion.div
-        style={{ textAlign: "center", margin: "40px 0" }}
-        whileHover={{ scale: 1.1 }}
-      >
+      <div style={{ textAlign: "center", margin: "40px 0" }}>
         <button className="btn" style={{ padding: "15px 40px", fontSize: "18px" }}>
           <i className="fas fa-plus"></i> Lihat Semua Destinasi
         </button>
-      </motion.div>
+      </div>
     </div>
   );
 }

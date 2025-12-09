@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-
 export default function Features() {
   const list = [
     { icon: "fa-route", title: "Rencana Perjalanan", desc: "Buat itinerary custom sesuai keinginanmu" },
@@ -12,19 +10,13 @@ export default function Features() {
     <div className="container" data-aos="fade-up">
       <div className="features">
         {list.map((f, i) => (
-          <motion.div
-            className="feature-item"
-            key={i}
-            data-aos="zoom-in-up"
-            whileHover={{ scale: 1.05, rotate: 1 }}
-            transition={{ type: "spring", stiffness: 150 }}
-          >
+          <div className="feature-item" key={i} data-aos="zoom-in-up">
             <div className="feature-icon">
               <i className={`fas ${f.icon}`}></i>
             </div>
             <h3>{f.title}</h3>
             <p>{f.desc}</p>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>
